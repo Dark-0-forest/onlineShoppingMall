@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="work.darkforest.acowzon.mapper.CommentMapper">
+
+    <!--查询所有的评论-->
+    <select id="queryAll" resultType="comment">
+        select *
+        from comment
+    </select>
+
+    <!--查询对应商品id的所有评论-->
+    <select id="queryAllByGoodsId" resultType="comment">
+        select *
+        from comment
+        where goods_id = #{id}
+    </select>
+
+    <!--查询对应商品id的评论数量-->
+    <select id="queryCommentCountByGoodsId" resultType="java.lang.Integer">
+        select count(*)
+        from comment
+        where goods_id = #{id}
+    </select>
+
+    <!--根据id查询评论信息-->
+    <select id="queryCommentById" resultType="comment">
+        select *
+        from comment
+        where comment_id = #{id}
+    </select>
+
+    <!--添加一条评论信息-->
+    <insert id="addComment" parameterType="comment">
+        insert into comment
+        values(#{commentId}, #{parentId}, #{goodsId}, #{userId}, #{commentText}, #{commentScore}, #{commentTime})
+    </insert>
+
+    <!--删除一条评论信息-->
+    <delete id="delCommentById">
+        delete from comment
+        where comment_id = #{id}
+    </delete>
+
+</mapper>
