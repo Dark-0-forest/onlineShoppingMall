@@ -115,7 +115,7 @@ public class UserController {
         if (userService.updateAddressId(userId, addressId)){
             return new BaseResponse(ResponseCodeConstant.SUCCESS).toMap();
         } else {
-            return new BaseResponse(ResponseCodeConstant.ADDRESS_UPDATE_FAILED).toMap();
+            return new BaseResponse(ResponseCodeConstant.USER_ADDRESS_UPDATE_FAILED).toMap();
         }
     }
 

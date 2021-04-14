@@ -3,6 +3,7 @@ package work.darkforest.acowzon.entity.po;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import work.darkforest.acowzon.entity.dto.AddressDto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -33,6 +34,22 @@ public class Address implements Serializable{
         this.addressProvince = addressProvince;
         this.addressCity = addressCity;
         this.detail = detail;
+        this.createTime = new Date();
+        this.updateTime = new Date();
+    }
+
+    public Address(AddressDto addressDto) {
+        this.addressId = addressDto.getAddressId();
+        if (addressId == null){
+            this.addressId = UUID.randomUUID().toString();
+        }
+        this.userId = addressDto.getUserId();
+        this.receiverName = addressDto.getReceiverName();
+        this.receiverPhone = addressDto.getReceiverPhone();
+        this.addressCountry = addressDto.getAddressCountry();
+        this.addressProvince = addressDto.getAddressProvince();
+        this.addressCity = addressDto.getAddressCity();
+        this.detail = addressDto.getDetail();
         this.createTime = new Date();
         this.updateTime = new Date();
     }

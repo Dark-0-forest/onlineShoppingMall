@@ -35,7 +35,7 @@ public class SwaggerConfig {
         // 作者信息 姓名，地址，邮箱
         Contact contact = new Contact("darkforest", "http://www.darkforest.work/", "92774025@qq.com");
         return new ApiInfo(
-                "Darkforest的swaggerAPI",    /*标题*/
+                "Darkforest的接口API",    /*标题*/
                 "API文档",    /*描述*/
                 "v1.0",      /*版本号*/
                 "http://www.darkforest.work/",  /*团队的服务器url*/
@@ -43,6 +43,5 @@ public class SwaggerConfig {
                 "Apache 2.0",     /*默认即可*/
                 "http://www.apache.org/licenses/LICENSE-2.0",    /*默认即可*/
                 new ArrayList()); /*标题*/
-
     }
 }

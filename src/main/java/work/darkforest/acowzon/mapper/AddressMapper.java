@@ -10,6 +10,9 @@ import java.util.List;
 @Mapper
 @Repository
 public interface AddressMapper {
+    // 查询所有的地址
+    List<Address> queryAll();
+
     // 查询一个用户的所有地址
     List<Address> queryAllByUserId(@Param("id") String id);
 

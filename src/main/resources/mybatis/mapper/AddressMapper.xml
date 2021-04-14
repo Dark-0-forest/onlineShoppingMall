@@ -4,6 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="work.darkforest.acowzon.mapper.AddressMapper">
+    <!--查询所有的地址-->
+    <select id="queryAll"  resultType="address">
+        select *
+        from address
+    </select>
+
     <!--查询一个用户的所有地址-->
     <select id="queryAllByUserId" resultType="address">
         select *
