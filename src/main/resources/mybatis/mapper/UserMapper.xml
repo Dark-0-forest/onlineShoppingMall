@@ -10,11 +10,18 @@
         from `user`
     </select>
 
-    <!--根据d查询一个用户信息-->
+    <!--根据id查询一个用户信息-->
     <select id="queryUserById" resultType="user">
         select *
         from `user`
         where user_id = #{id}
+    </select>
+
+    <!--查询一个用户昵称出现的次数-->
+    <select id="queryNicknameCount" resultType="java.lang.Integer">
+        select count(*)
+        from `user`
+        where user_nickname = #{nickname}
     </select>
 
     <!--初始化一个用户-->
@@ -40,7 +47,6 @@
             user_email      = #{userEmail},
             user_sex        = #{userSex},
             user_birth      = #{userBirth},
-            user_address_id = #{userAddressId}
             update_time     = #{updateTime}
         where user_id = #{userId}
     </update>
@@ -51,4 +57,18 @@
         set user_type = #{userType}
         where user_id = #{id}
     </update>
+
+    <!--修改一个用户的默认地址id-->
+    <update id="updateAddressId">
+        update `user`
+        set user_address_id = #{addressId}
+        where user_id = #{id}
+    </update>
+
+    <!--删除一个用户-->
+    <delete id="delUser">
+        delete `user`
+        where user_id = #{id}
+    </delete>
+
 </mapper>

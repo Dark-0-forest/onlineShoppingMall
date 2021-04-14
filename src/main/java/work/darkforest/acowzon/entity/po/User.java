@@ -1,8 +1,11 @@
 package work.darkforest.acowzon.entity.po;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import work.darkforest.acowzon.entity.dto.UserDto;
+import work.darkforest.acowzon.utils.constant.GenderConstant;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,6 +22,7 @@ public class User implements Serializable {
     private String userPhone;   // 用户电话
     private String userEmail;   // 用户邮箱
     private char userSex; // 用户性别 0男 1女
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date userBirth; // 用户生日
     private char userType;   // 用户类型，0买家，1卖家
     private String userAddressId;   // 用户地址id
@@ -43,6 +47,26 @@ public class User implements Serializable {
         this.userSex = sex;
         this.userBirth = userBirth;
         this.userType = userType;
+        this.userAddressId = "";
+        this.createTime = new Date();
+        this.updateTime = new Date();
+    }
+
+    public User(UserDto userDto){
+        this.userId = userDto.getUserId();
+        this.userRealname = userDto.getUserRealname();
+        this.userNickname = userDto.getUserNickname();
+        this.userImage = userDto.getUserImage();
+        this.userPhone = userDto.getUserPhone();
+        this.userEmail = userDto.getUserEmail();
+        this.userSex = userDto.getUserSex();
+        if (userSex == '女'){
+            this.userSex = GenderConstant.WOMAN;
+        } else {
+            this.userSex = GenderConstant.MAN;
+        }
+        this.userBirth = userDto.getUserBirth();
+        this.userType = userDto.getUserType();
         this.userAddressId = "";
         this.createTime = new Date();
         this.updateTime = new Date();

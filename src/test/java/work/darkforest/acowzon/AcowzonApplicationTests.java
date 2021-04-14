@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import work.darkforest.acowzon.mapper.AddressMapper;
 import work.darkforest.acowzon.mapper.LoginMapper;
 
+import java.util.Date;
+
 @SpringBootTest
 class AcowzonApplicationTests {
     @Autowired
@@ -15,7 +17,8 @@ class AcowzonApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println(addressMapper.queryAddressById("2d1ed7bf-4333-4c7a-86cc-043ae27288c6"));
+        Date date = new Date();
+        System.out.println(date);
 
     }
 

@@ -65,7 +65,11 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Boolean delLoginById(String id) {
-        // 错误返回false
-        return loginMapper.delLoginById(id) != 0;
+        // 删除一个登录信息时，也会把其相关的用户信息也删除
+        if (loginMapper.delLoginById(id) != 0 && userMapper.delUser(id) != 0){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

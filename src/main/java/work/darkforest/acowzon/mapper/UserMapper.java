@@ -12,8 +12,11 @@ public interface UserMapper {
     // 查询所有的用户信息
     List<User> queryAllUser();
 
-    // 根据d查询一个用户信息
+    // 根据id查询一个用户信息
     User queryUserById(@Param("id") String id);
+
+    // 查询一个用户昵称出现的次数
+    int queryNicknameCount(@Param("nickname") String nickname);
 
     // 初始化一个用户
     int initUser(User user);
@@ -26,4 +29,10 @@ public interface UserMapper {
 
     // 修改一个用户的类型
     int updateUserType(@Param("id") String id, @Param("userType") char userType);
+
+    // 修改一个用户的默认地址id
+    int updateAddressId(@Param("id") String id, @Param("addressId") String addressId);
+
+    // 删除一个用户
+    int delUser(@Param("id") String id);
 }
