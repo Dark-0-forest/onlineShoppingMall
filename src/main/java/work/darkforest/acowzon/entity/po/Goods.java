@@ -3,6 +3,7 @@ package work.darkforest.acowzon.entity.po;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import work.darkforest.acowzon.entity.dto.GoodsDto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -40,6 +41,26 @@ public class Goods implements Serializable {
         this.goodsInventory = goodsInventory;
         this.soldCount = 0;
         this.retailerId = retailerId;
+        this.goodsStarsCount = 0;
+        this.views = 0;
+        this.createTime = new Date();
+        this.updateTime = new Date();
+    }
+
+    public Goods(GoodsDto goods) {
+        this.goodsId = goods.getGoodsId();
+        if (goodsId == null){
+            this.goodsId = UUID.randomUUID().toString();
+        }
+        this.goodsName = goods.getGoodsName();
+        this.goodsTypeId = goods.getGoodsTypeId();
+        this.goodsPrice = goods.getGoodsPrice();
+        this.goodsImage = goods.getGoodsImage();
+        this.goodsSimpleDes = goods.getGoodsSimpleDes();
+        this.goodsDescription = goods.getGoodsDescription();
+        this.goodsInventory = goods.getGoodsInventory();
+        this.soldCount = 0;
+        this.retailerId = goods.getRetailerId();
         this.goodsStarsCount = 0;
         this.views = 0;
         this.createTime = new Date();

@@ -74,23 +74,30 @@
     </insert>
 
     <!--商品的浏览数views增加-->
-    <update id="addViews">
+    <update id="updateViews">
         update goods
         set views = views+1
         where goods_id = #{id}
     </update>
 
     <!--商品的喜爱数增加-->
-    <update id="addStars">
+    <update id="updateStars">
         update goods
         set goods_stars_count = goods_stars_count+1
         where goods_id = #{id}
     </update>
 
     <!--为指定商品增加销量-->
-    <update id="addSoldCount">
+    <update id="updateSoldCount">
         update goods
         set sold_count = sold_count + #{count}
+        where goods_id = #{id}
+    </update>
+
+    <!--为指定商品修改库存-->
+    <update id="updateInventory">
+        update goods
+        set goods_inventory = goods_inventory + #{count}
         where goods_id = #{id}
     </update>
 

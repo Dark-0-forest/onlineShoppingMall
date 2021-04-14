@@ -1,10 +1,14 @@
 package work.darkforest.acowzon.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 import work.darkforest.acowzon.entity.po.Order;
 
 import java.util.List;
 
+@Mapper
+@Repository
 public interface OrderMapper {
     // 查询所有的订单
     List<Order> queryAllOrder();

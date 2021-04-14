@@ -3,6 +3,7 @@ package work.darkforest.acowzon.entity.po;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import work.darkforest.acowzon.entity.dto.GoodsTypeDto;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -17,5 +18,10 @@ public class GoodsType implements Serializable {
     public GoodsType(String goodsType) {
         this.goodsTypeId = UUID.randomUUID().toString();
         this.goodsType = goodsType;
+    }
+
+    public GoodsType(GoodsTypeDto goodsType) {
+        this.goodsTypeId = UUID.randomUUID().toString();
+        this.goodsType = goodsType.getGoodsType();
     }
 }

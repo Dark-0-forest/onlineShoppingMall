@@ -27,13 +27,16 @@ public interface GoodsMapper {
     int addGoods(Goods goods);
 
     // 增加商品的浏览数,views+1,不需要更新修改时间
-    int addViews(@Param("id") String id);
+    int updateViews(@Param("id") String id);
 
     // 增加商品的喜欢数,不需要更新修改时间
-    int addStars(@Param("id") String id);
+    int updateStars(@Param("id") String id);
 
     // 增加商品的售出数量,不需要更新修改时间
-    int addSoldCount(@Param("id") String id, @Param("count") int count);
+    int updateSoldCount(@Param("id") String id, @Param("count") int count);
+
+    // 修改商品的库存,正数增加，负数减少
+    int updateInventory(@Param("id") String id, @Param("count") int count);
 
     // 修改商品信息
     int updateGoods(Goods goods);
