@@ -1,4 +1,4 @@
-package work.darkforest.acowzon.entity.pojo;
+package work.darkforest.acowzon.entity.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

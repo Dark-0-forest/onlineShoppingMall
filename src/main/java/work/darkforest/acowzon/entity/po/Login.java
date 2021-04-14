@@ -1,8 +1,9 @@
-package work.darkforest.acowzon.entity.pojo;
+package work.darkforest.acowzon.entity.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import work.darkforest.acowzon.entity.dto.LoginDto;
 
 import java.util.UUID;
 
@@ -18,5 +19,11 @@ public class Login {
         this.userId = UUID.randomUUID().toString();
         this.userName = userName;
         this.userPwd = userPwd;
+    }
+
+    public Login(LoginDto loginDto) {
+        this.userId = UUID.randomUUID().toString();;
+        this.userName = loginDto.getUsername();
+        this.userPwd = loginDto.getPassword();
     }
 }

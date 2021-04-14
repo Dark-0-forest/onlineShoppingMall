@@ -1,7 +1,7 @@
 package work.darkforest.acowzon.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import work.darkforest.acowzon.entity.pojo.Order;
+import work.darkforest.acowzon.entity.po.Order;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package work.darkforest.acowzon.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import work.darkforest.acowzon.entity.pojo.GoodsType;
+import work.darkforest.acowzon.entity.po.GoodsType;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package work.darkforest.acowzon.entity.pojo;
+package work.darkforest.acowzon.entity.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 
 @Data
