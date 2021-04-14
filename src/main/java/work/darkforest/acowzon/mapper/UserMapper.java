@@ -15,6 +15,9 @@ public interface UserMapper {
     // 根据d查询一个用户信息
     User queryUserById(@Param("id") String id);
 
+    // 初始化一个用户
+    int initUser(User user);
+
     // 插入一个新的用户的信息
     int addUser(User user);
 

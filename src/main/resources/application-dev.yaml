@@ -28,7 +28,7 @@ spring:
 
 # mybatis 配置
 mybatis:
-  type-aliases-package: work.darkforest.acowzon.entity.pojo
+  type-aliases-package: work.darkforest.acowzon.entity.po
   mapper-locations: classpath:mybatis/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true

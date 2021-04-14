@@ -17,6 +17,12 @@
         where user_id = #{id}
     </select>
 
+    <!--初始化一个用户-->
+    <insert id="initUser" parameterType="user">
+        insert into `user`(user_id, user_nickname, create_time, update_time)
+        values (#{userId}, #{userNickname}, #{createTime},#{updateTime})
+    </insert>
+
     <!--插入一个新的用户的信息-->
     <insert id="addUser" parameterType="user">
         insert into `user`

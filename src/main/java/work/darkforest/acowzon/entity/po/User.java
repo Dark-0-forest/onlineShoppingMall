@@ -29,11 +29,11 @@ public class User implements Serializable {
         this.userId = userId;
         this.userNickname = username;
         createTime = new Date();
-        createTime = new Date();
+        updateTime = new Date();
     }
 
     public User(String userId,String userRealname, String userNickname, String userImage,
-                String phone, String userEmail, char sex, Date userBirth, char userType, String userAddressId) {
+                String phone, String userEmail, char sex, Date userBirth, char userType) {
         this.userId = userId;
         this.userRealname = userRealname;
         this.userNickname = userNickname;
@@ -43,7 +43,7 @@ public class User implements Serializable {
         this.userSex = sex;
         this.userBirth = userBirth;
         this.userType = userType;
-        this.userAddressId = userAddressId;
+        this.userAddressId = "";
         this.createTime = new Date();
         this.updateTime = new Date();
     }
