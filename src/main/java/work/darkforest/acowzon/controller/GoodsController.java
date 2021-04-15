@@ -51,8 +51,15 @@ public class GoodsController {
     @ApiOperation("上架商品")
     @GetMapping("/add")
     public Map add(GoodsDto goods){
-        if (goodsService.addGoods(goods)){
+        int state = goodsService.addGoods(goods);
+        if (state == 1){
             return new BaseResponse(ResponseCodeConstant.SUCCESS).toMap();
+        } else if (state == -1){
+            return new BaseResponse(ResponseCodeConstant.GOODS_CANT_FIND_TYPE).toMap();
+        } else if (state == -2){
+            return new BaseResponse(ResponseCodeConstant.GOODS_CANT_FIND_USER).toMap();
+        } else if (state == -3){
+            return new BaseResponse(ResponseCodeConstant.GOODS_USER_IS_NOT_RETAILER).toMap();
         } else {
             return new BaseResponse(ResponseCodeConstant.GOODS_INSERT_FAILED).toMap();
         }
@@ -103,8 +110,15 @@ public class GoodsController {
     @ApiOperation("修改信息")
     @GetMapping("/update")
     public Map update(Goods goods){
-        if (goodsService.updateGoods(goods)){
+        int state = goodsService.updateGoods(goods);
+        if (state == 1){
             return new BaseResponse(ResponseCodeConstant.SUCCESS).toMap();
+        } else if (state == -1){
+            return new BaseResponse(ResponseCodeConstant.GOODS_CANT_FIND_TYPE).toMap();
+        } else if (state == -2){
+            return new BaseResponse(ResponseCodeConstant.GOODS_CANT_FIND_USER).toMap();
+        } else if (state == -3){
+            return new BaseResponse(ResponseCodeConstant.GOODS_USER_IS_NOT_RETAILER).toMap();
         } else {
             return new BaseResponse(ResponseCodeConstant.GOODS_UPDATE_FAILED).toMap();
         }

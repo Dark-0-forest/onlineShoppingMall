@@ -28,7 +28,7 @@ public interface UserService {
     Boolean updateUserType(String id, char userType);
 
     // 修改一个用户的默认地址id
-    Boolean updateAddressId(String id, String addressId);
+    int updateAddressId(String id, String addressId);
 
     // 删除一个用户
     Boolean delUser(String id);

@@ -61,7 +61,15 @@ public class OrderController {
             return new BaseResponse(ResponseCodeConstant.ORDER_GOODS_OUT_OF_INVENTORY).toMap();
         } else if (state == -2){
             return new BaseResponse(ResponseCodeConstant.ORDER_GOODS_NOT_FIND).toMap();
-        } else {
+        } else if (state == -3){
+            return new BaseResponse(ResponseCodeConstant.ORDER_BUYER_NOT_FIND).toMap();
+        } else if (state == -4){
+            return new BaseResponse(ResponseCodeConstant.ORDER_BUYER_TYPE_ERROR).toMap();
+        } else if (state == -5){
+            return new BaseResponse(ResponseCodeConstant.ORDER_RETAILER_NOT_FIND).toMap();
+        } else if (state == -6){
+            return new BaseResponse(ResponseCodeConstant.ORDER_RETAILER_TYPE_ERROR).toMap();
+        }  else {
             return new BaseResponse(ResponseCodeConstant.ORDER_INSERT_FAILED).toMap();
         }
     }

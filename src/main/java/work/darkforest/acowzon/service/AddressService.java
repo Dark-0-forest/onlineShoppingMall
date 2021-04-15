@@ -17,10 +17,10 @@ public interface AddressService {
     AddressDto queryAddressById(String id);
 
     // 插入一个新的地址
-    Boolean addAddress(AddressDto addressDto);
+    int addAddress(AddressDto addressDto);
 
     // 修改一个地址的信息
-    Boolean updateAddress(AddressDto address);
+    int updateAddress(AddressDto address);
 
     // 根据id删除一个地址
     Boolean delAddressById(String id);

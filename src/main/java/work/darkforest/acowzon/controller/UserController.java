@@ -112,8 +112,11 @@ public class UserController {
     @GetMapping("/address")
     public Map updateAddress(@RequestParam("userId") String userId,
                              @RequestParam("addressId") String addressId){
-        if (userService.updateAddressId(userId, addressId)){
+        int state = userService.updateAddressId(userId, addressId);
+        if (state == 1){
             return new BaseResponse(ResponseCodeConstant.SUCCESS).toMap();
+        } else if (state == -1){
+            return new BaseResponse(ResponseCodeConstant.USER_CANT_FIND_ADDRESS).toMap();
         } else {
             return new BaseResponse(ResponseCodeConstant.USER_ADDRESS_UPDATE_FAILED).toMap();
         }

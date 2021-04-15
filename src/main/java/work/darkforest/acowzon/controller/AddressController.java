@@ -45,8 +45,11 @@ public class AddressController {
     @ApiOperation("插入地址")
     @GetMapping("/insert")
     public Map insert(AddressDto address){
-        if (addressService.addAddress(address)){
+        int state = addressService.addAddress(address);
+        if (state == 1){
             return new BaseResponse(ResponseCodeConstant.SUCCESS).toMap();
+        } else if (state == -1){
+            return new BaseResponse(ResponseCodeConstant.ADDRESS_CANT_FIND_USER).toMap();
         } else {
             return new BaseResponse(ResponseCodeConstant.ADDRESS_INSERT_FAILED).toMap();
         }
@@ -55,8 +58,11 @@ public class AddressController {
     @ApiOperation("修改地址")
     @GetMapping("/update")
     public Map update(AddressDto address){
-        if (addressService.updateAddress(address)){
+        int state = addressService.updateAddress(address);
+        if (state == 1){
             return new BaseResponse(ResponseCodeConstant.SUCCESS).toMap();
+        } else if (state == -1){
+            return new BaseResponse(ResponseCodeConstant.ADDRESS_CANT_FIND_USER).toMap();
         } else {
             return new BaseResponse(ResponseCodeConstant.ADDRESS_UPDATE_FAILED).toMap();
         }

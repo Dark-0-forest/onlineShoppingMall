@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import work.darkforest.acowzon.entity.dto.OrderDto;
 import work.darkforest.acowzon.entity.po.Goods;
 import work.darkforest.acowzon.entity.po.Order;
+import work.darkforest.acowzon.entity.po.User;
 import work.darkforest.acowzon.mapper.GoodsMapper;
 import work.darkforest.acowzon.mapper.OrderMapper;
+import work.darkforest.acowzon.mapper.UserMapper;
 import work.darkforest.acowzon.service.OrderService;
 import work.darkforest.acowzon.utils.constant.OrderStateConstant;
 
@@ -19,6 +21,8 @@ public class OrderServiceImpl implements OrderService {
     OrderMapper orderMapper;
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    UserMapper userMapper;
 
 
     @Override
@@ -50,10 +54,22 @@ public class OrderServiceImpl implements OrderService {
     public int addOrder(String userId, String goodsId, int count) {
         // 新建一个order对象
         Order order = new Order(goodsId, userId, count);
+        User buyer = userMapper.queryUserById(userId);
+        if (buyer == null){
+            return -3;  // 买家未搜到
+        } else if (buyer.getUserType() != '0'){
+            return -4;  // 买家信息错误
+        }
         // 获取商品信息
         Goods goods = goodsMapper.queryGoodsById(goodsId);
+        User retailer = userMapper.queryUserById(goods.getRetailerId());
         if (goods == null){
-            return -2;
+            return -2;  // 商品不存在
+        }
+        if (retailer == null){
+            return -5;  // 卖家信息不存在
+        } else if (retailer.getUserType() != '1'){
+            return -6;  // 卖家信息错误
         }
         order.setRetailerId(goods.getRetailerId());
         order.setGoodsPrice(goods.getGoodsPrice());

@@ -2,7 +2,9 @@ package work.darkforest.acowzon.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import work.darkforest.acowzon.entity.po.Address;
 import work.darkforest.acowzon.entity.po.User;
+import work.darkforest.acowzon.mapper.AddressMapper;
 import work.darkforest.acowzon.mapper.UserMapper;
 import work.darkforest.acowzon.service.UserService;
 
@@ -12,6 +14,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    AddressMapper addressMapper;
 
     @Override
     public List<User> queryAllUser() {
@@ -74,8 +78,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean updateAddressId(String id, String addressId) {
-        return userMapper.updateAddressId(id, addressId) != 0;
+    public int updateAddressId(String id, String addressId) {
+        if (addressMapper.queryAddressById(addressId) == null){
+            return -1;
+        }
+        return userMapper.updateAddressId(id, addressId);
     }
 
     @Override

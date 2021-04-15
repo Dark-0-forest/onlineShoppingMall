@@ -21,7 +21,7 @@ public interface GoodsService {
     List<GoodsDto> queryGoodsByRetailerId(String id);
 
     // 添加一个商品
-    Boolean addGoods(GoodsDto goods);
+    int addGoods(GoodsDto goods);
 
     // 增加商品的浏览数,views+1,不需要更新修改时间
     Boolean updateViews(String id);
@@ -36,7 +36,7 @@ public interface GoodsService {
     Boolean updateInventory(String id, int count);
 
     // 修改商品信息
-    Boolean updateGoods(Goods goods);
+    int updateGoods(Goods goods);
 
     // 删除一个商品
     Boolean delGoods(String id);
