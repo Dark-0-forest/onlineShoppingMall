@@ -1,46 +1,79 @@
 package work.darkforest.acowzon.entity.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import java.util.Date;
+import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableField;
+import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
-
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author Darkforest
+ * @since 2021-04-24
+ */
 @Data
+@Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@ApiModel(value="Order对象", description="")
 public class Order implements Serializable {
-    private String orderId; // 订单id
-    private String goodsId; // 商品id
-    private String userId;  // 用户id
-    private String retailerId;  // 商家id
-    private int goodsCount; // 商品数量
-    private double goodsPrice;  // 商品单价
-    private double orderPrice;  // 订单价格
-    private char orderState; // 订单状态 0未支付 1已支付 2未发货 3已发货 4已确认收货 5取消订单
-    private Date orderTime; // 订单创建的时间
+
+    private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "订单id")
+      @TableId(value = "order_id", type = IdType.ASSIGN_UUID)
+    private String orderId;
+
+    @ApiModelProperty(value = "商品id")
+    private String goodsId;
+
+    @ApiModelProperty(value = "用户id")
+    private String userId;
+
+    @ApiModelProperty(value = "商家id")
+    private String retailerId;
+
+    @ApiModelProperty(value = "商品数量")
+    private Integer goodsCount;
+
+    @ApiModelProperty(value = "商品单价")
+    private Double goodsPrice;
+
+    @ApiModelProperty(value = "订单总价")
+    private Double orderPrice;
+
+    @ApiModelProperty(value = "订单状态")
+    private String orderState;
+
+    @ApiModelProperty(value = "version乐观锁")
+    @Version
+    private Integer version;
+
+    @ApiModelProperty(value = "逻辑删除")
+    @TableLogic
+    private Integer deleted;
+
+    @ApiModelProperty(value = "创建时间")
+      @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+
+    @ApiModelProperty(value = "修改时间")
+      @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
 
 
-    public Order(String goodsId, String userId, String retailerId, int goodsCount, double goodsPrice, double orderPrice) {
-        this.orderId = UUID.randomUUID().toString();
-        this.goodsId = goodsId;
-        this.userId = userId;
-        this.retailerId = retailerId;
-        this.goodsCount = goodsCount;
-        this.goodsPrice = goodsPrice;
-        this.orderPrice = orderPrice;
-        this.orderState = 0;
-        this.orderTime = new Date();
-    }
-
-    public Order(String goodsId, String userId, int goodsCount) {
-        this.orderId = UUID.randomUUID().toString();
-        this.goodsId = goodsId;
-        this.userId = userId;
-        this.goodsCount = goodsCount;
-        this.orderState = 0;
-        this.orderTime = new Date();
-    }
 }

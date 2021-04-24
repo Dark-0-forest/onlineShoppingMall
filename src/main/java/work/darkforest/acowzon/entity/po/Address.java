@@ -1,56 +1,79 @@
 package work.darkforest.acowzon.entity.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import java.util.Date;
+import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableField;
+import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import work.darkforest.acowzon.entity.dto.AddressDto;
+import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
-
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author Darkforest
+ * @since 2021-04-24
+ */
 @Data
+@Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class Address implements Serializable{
-    private String addressId;   // 地址id
-    private String userId;  // 拥有此地址的用户id
-    private String receiverName; // 收货人的姓名
-    private String receiverPhone;// 收货人的电话号码
-    private String addressCountry;  // 国家
-    private String addressProvince; // 省
-    private String addressCity;     // 市
-    private String detail;  // 具体地址
-    private Date createTime;    // 创建时间
-    private Date updateTime;    // 创建时间
+@EqualsAndHashCode(callSuper = false)
+@ApiModel(value="Address对象", description="")
+public class Address implements Serializable {
 
-    public Address(String userId, String receiverName, String receiverPhone, String addressCountry,
-                   String addressProvince, String addressCity, String detail) {
-        this.addressId = UUID.randomUUID().toString();
-        this.userId = userId;
-        this.receiverName = receiverName;
-        this.receiverPhone = receiverPhone;
-        this.addressCountry = addressCountry;
-        this.addressProvince = addressProvince;
-        this.addressCity = addressCity;
-        this.detail = detail;
-        this.createTime = new Date();
-        this.updateTime = new Date();
-    }
+    private static final long serialVersionUID = 1L;
 
-    public Address(AddressDto addressDto) {
-        this.addressId = addressDto.getAddressId();
-        if (addressId == null){
-            this.addressId = UUID.randomUUID().toString();
-        }
-        this.userId = addressDto.getUserId();
-        this.receiverName = addressDto.getReceiverName();
-        this.receiverPhone = addressDto.getReceiverPhone();
-        this.addressCountry = addressDto.getAddressCountry();
-        this.addressProvince = addressDto.getAddressProvince();
-        this.addressCity = addressDto.getAddressCity();
-        this.detail = addressDto.getDetail();
-        this.createTime = new Date();
-        this.updateTime = new Date();
-    }
+    @ApiModelProperty(value = "地址id")
+      @TableId(value = "address_id", type = IdType.ASSIGN_UUID)
+    private String addressId;
+
+    @ApiModelProperty(value = "用户id")
+    private String userId;
+
+    @ApiModelProperty(value = "收货人姓名")
+    private String receiverName;
+
+    @ApiModelProperty(value = "收货人电话")
+    private String receiverPhone;
+
+    @ApiModelProperty(value = "国家")
+    private String addressCountry;
+
+    @ApiModelProperty(value = "省")
+    private String addressProvince;
+
+    @ApiModelProperty(value = "城市")
+    private String addressCity;
+
+    @ApiModelProperty(value = "地址细节")
+    private String detail;
+
+    @ApiModelProperty(value = "version乐观锁")
+    @Version
+    private Integer version;
+
+    @ApiModelProperty(value = "逻辑删除")
+    @TableLogic
+    private Integer deleted;
+
+    @ApiModelProperty(value = "创建时间")
+      @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+
+    @ApiModelProperty(value = "修改时间")
+      @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
+
+
 }

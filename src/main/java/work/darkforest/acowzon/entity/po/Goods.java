@@ -1,69 +1,91 @@
 package work.darkforest.acowzon.entity.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import java.util.Date;
+import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableField;
+import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import work.darkforest.acowzon.entity.dto.GoodsDto;
+import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.UUID;
-
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author Darkforest
+ * @since 2021-04-24
+ */
 @Data
+@Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@ApiModel(value="Goods对象", description="")
 public class Goods implements Serializable {
-    private String goodsId; // 商品id
-    private String goodsName; // 商品名称
-    private String goodsTypeId; // 商品类型
-    private double goodsPrice; // 商品价格
-    private String goodsImage; // 商品图片的存储地址
-    private String goodsSimpleDes; // 商品的简单描述
-    private String goodsDescription; // 商品的描述
-    private int goodsInventory; // 商品库存
-    private int soldCount; // 商品售出个数
-    private String retailerId; // 商品上架商家的id
-    private int goodsStarsCount; // 喜欢此商品的人数
-    private int views; // 商品的浏览数
-    private Date createTime; // 商品创建时间
-    private Date updateTime; // 商品修改时间
 
-    // 用于插入的构造函数
-    public Goods(String goodsName, String goodsTypeId, double goodsPrice, String goodsImage, String goodsSimpleDes,
-                 String goodsDescription, int goodsInventory, String retailerId) {
-        this.goodsId = UUID.randomUUID().toString();
-        this.goodsName = goodsName;
-        this.goodsTypeId = goodsTypeId;
-        this.goodsPrice = goodsPrice;
-        this.goodsImage = goodsImage;
-        this.goodsSimpleDes = goodsSimpleDes;
-        this.goodsDescription = goodsDescription;
-        this.goodsInventory = goodsInventory;
-        this.soldCount = 0;
-        this.retailerId = retailerId;
-        this.goodsStarsCount = 0;
-        this.views = 0;
-        this.createTime = new Date();
-        this.updateTime = new Date();
-    }
+    private static final long serialVersionUID = 1L;
 
-    public Goods(GoodsDto goods) {
-        this.goodsId = goods.getGoodsId();
-        if (goodsId == null){
-            this.goodsId = UUID.randomUUID().toString();
-        }
-        this.goodsName = goods.getGoodsName();
-        this.goodsTypeId = goods.getGoodsTypeId();
-        this.goodsPrice = goods.getGoodsPrice();
-        this.goodsImage = goods.getGoodsImage();
-        this.goodsSimpleDes = goods.getGoodsSimpleDes();
-        this.goodsDescription = goods.getGoodsDescription();
-        this.goodsInventory = goods.getGoodsInventory();
-        this.soldCount = 0;
-        this.retailerId = goods.getRetailerId();
-        this.goodsStarsCount = 0;
-        this.views = 0;
-        this.createTime = new Date();
-        this.updateTime = new Date();
-    }
+    @ApiModelProperty(value = "商品id")
+      @TableId(value = "goods_id", type = IdType.ASSIGN_UUID)
+    private String goodsId;
+
+    @ApiModelProperty(value = "商品名称")
+    private String goodsName;
+
+    @ApiModelProperty(value = "商品类型id")
+    private String goodsTypeId;
+
+    @ApiModelProperty(value = "商品价格")
+    private Double goodsPrice;
+
+    @ApiModelProperty(value = "商品图片路径")
+    private String goodsImage;
+
+    @ApiModelProperty(value = "商品简单描述")
+    private String goodsSimpleDes;
+
+    @ApiModelProperty(value = "商品详情")
+    private String goodsDescription;
+
+    @ApiModelProperty(value = "商品库存")
+    private Integer goodsInventory;
+
+    @ApiModelProperty(value = "已售数量")
+    private Integer soldCount;
+
+    @ApiModelProperty(value = "商家id")
+    private String retailerId;
+
+    @ApiModelProperty(value = "喜爱数")
+    private Integer goodsStarsCount;
+
+    @ApiModelProperty(value = "浏览量")
+    private Integer views;
+
+    @ApiModelProperty(value = "version乐观锁")
+    @Version
+    private Integer version;
+
+    @ApiModelProperty(value = "逻辑删除")
+    @TableLogic
+    private Integer deleted;
+
+    @ApiModelProperty(value = "创建时间")
+      @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+
+    @ApiModelProperty(value = "修改时间")
+      @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
+
+
 }

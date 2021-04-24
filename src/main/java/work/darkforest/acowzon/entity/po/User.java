@@ -1,74 +1,83 @@
 package work.darkforest.acowzon.entity.po;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.baomidou.mybatisplus.annotation.IdType;
+import java.util.Date;
+import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.TableField;
+import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import work.darkforest.acowzon.entity.dto.UserDto;
-import work.darkforest.acowzon.utils.constant.GenderConstant;
+import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.util.Date;
-
-
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author Darkforest
+ * @since 2021-04-24
+ */
 @Data
+@Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
+@ApiModel(value="User对象", description="")
 public class User implements Serializable {
-    private String userId;  // 用户id
-    private String userRealname;    // 用户真实姓名
-    private String userNickname;    // 用户昵称
-    private String userImage;   // 用户头像的路径
-    private String userPhone;   // 用户电话
-    private String userEmail;   // 用户邮箱
-    private char userSex; // 用户性别 0男 1女
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    private Date userBirth; // 用户生日
-    private char userType;   // 用户类型，0买家，1卖家
-    private String userAddressId;   // 用户地址id
-    private Date createTime;    // 用户创建时间
-    private Date updateTime;    // 用户修改时间
 
-    public User(String userId, String username){
-        this.userId = userId;
-        this.userNickname = username;
-        createTime = new Date();
-        updateTime = new Date();
-    }
+    private static final long serialVersionUID = 1L;
 
-    public User(String userId,String userRealname, String userNickname, String userImage,
-                String phone, String userEmail, char sex, Date userBirth, char userType) {
-        this.userId = userId;
-        this.userRealname = userRealname;
-        this.userNickname = userNickname;
-        this.userImage = userImage;
-        this.userPhone = phone;
-        this.userEmail = userEmail;
-        this.userSex = sex;
-        this.userBirth = userBirth;
-        this.userType = userType;
-        this.userAddressId = "";
-        this.createTime = new Date();
-        this.updateTime = new Date();
-    }
+    @ApiModelProperty(value = "用户id")
+      @TableId(value = "user_id", type = IdType.ASSIGN_UUID)
+    private String userId;
 
-    public User(UserDto userDto){
-        this.userId = userDto.getUserId();
-        this.userRealname = userDto.getUserRealname();
-        this.userNickname = userDto.getUserNickname();
-        this.userImage = userDto.getUserImage();
-        this.userPhone = userDto.getUserPhone();
-        this.userEmail = userDto.getUserEmail();
-        this.userSex = userDto.getUserSex();
-        if (userSex == '女'){
-            this.userSex = GenderConstant.WOMAN;
-        } else {
-            this.userSex = GenderConstant.MAN;
-        }
-        this.userBirth = userDto.getUserBirth();
-        this.userType = userDto.getUserType();
-        this.userAddressId = "";
-        this.createTime = new Date();
-        this.updateTime = new Date();
-    }
+    @ApiModelProperty(value = "用户真实姓名")
+    private String userRealname;
+
+    @ApiModelProperty(value = "用户昵称")
+    private String userNickname;
+
+    @ApiModelProperty(value = "用户头像路径")
+    private String userImage;
+
+    @ApiModelProperty(value = "用户手机")
+    private String userPhone;
+
+    @ApiModelProperty(value = "用户邮箱")
+    private String userEmail;
+
+    @ApiModelProperty(value = "用户性别")
+    private String userGender;
+
+    @ApiModelProperty(value = "出生日期")
+    private Date userBirth;
+
+    @ApiModelProperty(value = "用户类型")
+    private String userType;
+
+    @ApiModelProperty(value = "用户默认地址id")
+    private String userAddressId;
+
+    @ApiModelProperty(value = "version乐观锁")
+    @Version
+    private Integer version;
+
+    @ApiModelProperty(value = "逻辑删除")
+    @TableLogic
+    private Integer deleted;
+
+    @ApiModelProperty(value = "创建时间")
+      @TableField(fill = FieldFill.INSERT)
+    private Date createTime;
+
+    @ApiModelProperty(value = "修改时间")
+      @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
 }

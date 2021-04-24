@@ -26,9 +26,7 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
 
-# mybatis 配置
-mybatis:
+# mybatis-plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:work/darkforest/acowzon/mapper/xml/*.xml
   type-aliases-package: work.darkforest.acowzon.entity.po
-  mapper-locations: classpath:mybatis/mapper/*.xml
-  configuration:
-    map-underscore-to-camel-case: true

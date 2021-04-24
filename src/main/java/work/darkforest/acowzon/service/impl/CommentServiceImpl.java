@@ -1,8 +1,8 @@
 package work.darkforest.acowzon.service.impl;
 
-import work.darkforest.acowzon.entity.po.User;
-import work.darkforest.acowzon.mapper.UserMapper;
-import work.darkforest.acowzon.service.UserService;
+import work.darkforest.acowzon.entity.po.Comment;
+import work.darkforest.acowzon.mapper.CommentMapper;
+import work.darkforest.acowzon.service.CommentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2021-04-24
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements CommentService {
 
 }

@@ -1,6 +1,6 @@
 package work.darkforest.acowzon.service;
 
-import work.darkforest.acowzon.entity.po.Address;
+import work.darkforest.acowzon.entity.po.Comment;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Darkforest
  * @since 2021-04-24
  */
-public interface AddressService extends IService<Address> {
+public interface CommentService extends IService<Comment> {
 
 }
